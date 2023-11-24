@@ -1,7 +1,7 @@
 import socket
 import os
 
-HOST = '10.1.1.3' #NA2
+HOST = '30.1.1.2' #상대방이 아닌 본인의 IP주소
 def main():
     if os.name == 'nt':
         socket_protocol = socket.IPPROTO_IP
