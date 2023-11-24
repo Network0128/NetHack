@@ -9,7 +9,7 @@ def main():
         socket_protocol = socket.IPPROTO_ICMP
 
     sniffer = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket_protocol)
-    sniffer.bind((HOST, 80))
+    sniffer.bind((HOST, 8080)) #상대방이 아닌 본인의 Port 주소
     sniffer.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
 
     if os.name == 'nt':
