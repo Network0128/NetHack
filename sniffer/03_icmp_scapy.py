@@ -1,6 +1,4 @@
-# pip install scapy
-
-from scapy.all import *
+from scapy.all import * # pip install scapy
 
 def packet_callback(packet):
     if packet.haslayer(ICMP):
