@@ -1,0 +1,13 @@
+# Cisco 장비
+ip dns server
+ip http server
+ip http secure-server
+ip http authentication local //http,https 모두 적용됨
+
+# ubuntu docker
+apt update
+apt install apache2
+service apache2 start //systemctl start apache2
+
+# NetworkAutomation
+python3 -m http.server 80
