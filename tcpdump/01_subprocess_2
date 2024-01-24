@@ -1,0 +1,16 @@
+import subprocess
+
+# 사용자로부터 IP 주소 입력받기
+ip_address = input("Please enter the IP address: ")
+
+# TCPdump 명령어
+command = f"tcpdump -X -c 5 -w output.pcap 'src {ip_address} and icmp'"
+
+# 명령어 실행
+process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+
+# 명령어의 출력을 가져옴
+stdout, stderr = process.communicate()
+
+# 출력을 출력함
+print(stdout.decode())
