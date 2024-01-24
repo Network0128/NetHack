@@ -1,0 +1,13 @@
+import subprocess
+
+# TCPdump 명령어
+command = "tcpdump -X -c 5 -w output.pcap 'src 192.168.1.130 and icmp'"
+
+# 명령어 실행
+process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+
+# 명령어의 출력을 가져옴
+stdout, stderr = process.communicate()
+
+# 출력을 출력함
+print(stdout.decode())
