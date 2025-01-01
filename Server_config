@@ -11,3 +11,4 @@ service apache2 start //systemctl start apache2
 
 # NetworkAutomation
 python3 -m http.server 80
+
