@@ -1,1 +1,28 @@
 
+import socket
+import ipaddress
+
+# 사용자 입력 받기
+start_ip = input("시작 IP (ex: 192.168.1.10): ")
+end_ip = input("끝 IP (ex: 192.168.1.20): ")
+port = int(input("점검할 포트 번호: "))
+
+# IP를 정수로 변환
+start = int(ipaddress.ip_address(start_ip))
+end = int(ipaddress.ip_address(end_ip))
+
+# 스캔 및 출력
+print(f"{start_ip} ~ {end_ip}, 포트 {port} 스캔 시작")
+for ip_int in range(start, end + 1):
+    ip = str(ipaddress.ip_address(ip_int))
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.settimeout(1)
+    result = s.connect_ex((ip, port))
+    if result == 0:
+        status = "OPEN"
+    else:
+        status = "CLOSED"
+    print(f"{ip}:{port} - {status}")
+    s.close()
+
+print("스캔 완료")
