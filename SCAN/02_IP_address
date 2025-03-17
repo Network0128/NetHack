@@ -1,1 +1,75 @@
+ipaddress.ip_address(): 문자열 IP를 IP 객체로 변환하거나 정수로 처리.
+ipaddress.ip_network(): 네트워크 대역(예: "192.168.1.0/24")을 정의하고 다룸.
+IP 정수 변환: 네트워크 계산을 쉽게 하기 위해 IP를 정수로 변환 가능.
+-------------------
 
+1. IP 주소 생성 및 변환
+
+import ipaddress
+
+# IP 주소 문자열을 객체로 변환
+ip = ipaddress.ip_address("192.168.1.10")
+print(ip)  # 출력: 192.168.1.10
+
+# IP 주소를 정수로 변환
+ip_int = int(ip)
+print(ip_int)  # 출력: 3232235530
+
+# 정수를 다시 IP 주소로 변환
+ip_back = ipaddress.ip_address(ip_int)
+print(ip_back)  # 출력: 192.168.1.10
+
+-------------------
+
+2. 네트워크 대역 확인
+
+import ipaddress
+
+# 네트워크 대역 정의
+network = ipaddress.ip_network("192.168.1.0/24")
+print(network)  # 출력: 192.168.1.0/24
+
+# 네트워크에 속한 IP인지 확인
+ip = ipaddress.ip_address("192.168.1.10")
+print(ip in network)  # 출력: True
+
+ip_out = ipaddress.ip_address("10.0.0.1")
+print(ip_out in network)  # 출력: False
+
+---------------------
+
+3. IP 범위 생성
+
+import ipaddress
+
+# 시작 IP와 끝 IP로 범위 생성
+start_ip = ipaddress.ip_address("192.168.1.10")
+end_ip = ipaddress.ip_address("192.168.1.15")
+
+# 범위 내 모든 IP 출력
+for ip_int in range(int(start_ip), int(end_ip) + 1):
+    ip = ipaddress.ip_address(ip_int)
+    print(ip)
+# 출력:
+# 192.168.1.10
+# 192.168.1.11
+# 192.168.1.12
+# 192.168.1.13
+# 192.168.1.14
+# 192.168.1.15
+
+---------------------
+4. 네트워크 내 모든 IP 나열
+
+import ipaddress
+
+# 네트워크 대역에서 모든 IP 출력 (처음 5개만)
+network = ipaddress.ip_network("192.168.1.0/24")
+for ip in list(network)[:5]:
+    print(ip)
+# 출력:
+# 192.168.1.0
+# 192.168.1.1
+# 192.168.1.2
+# 192.168.1.3
+# 192.168.1.4
