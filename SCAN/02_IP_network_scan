@@ -14,17 +14,14 @@ end = int(ipaddress.ip_address(end_ip))
 print(f"{start_ip} ~ {end_ip}, scanning port {port}")
 for ip_int in range(start, end + 1):
     ip = str(ipaddress.ip_address(ip_int))
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.settimeout(1)
-    result = sock.connect_ex((ip, port))
+    ipscan_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    result = ipscan_sock.connect_ex((ip, port))
     if result == 0:
-        status = "OPEN"
+        print(f"{ip}:{port} is open")
     else:
-        status = "CLOSED"
-    print(f"{ip}:{port} - {status}")
-    sock.close()
+        print(f"{ip}:{port} is closed")
+    ipscan_sock.close()
 
-print("Scan completed")
 
 
 -----------함수와 with 구문을 사용하여 간단히 구현-------------------------------
