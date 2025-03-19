@@ -1,6 +1,6 @@
 포트 반복문
-지정한 포트 범위(start_portstart\_portstart_port부터 end_portend\_portend_port)를 반복하여 각 포트에 대해 TCP 소켓을 생성하고, connect_ex를 사용해 연결을 시도합니다. 
-연결 결과가 0이면(Open) 해당 포트가 열려있음을, 그렇지 않으면(Closed) 닫혀 있음을 출력합니다.
+지정한 포트 범위(start_portstart\_portstart_port부터 end_portend\_portend_port)를 반복하여 각 포트에 대해 TCP 소켓을 생성하고, 
+connect_ex를 사용해 연결을 시도합니다. 연결 결과가 0이면(Open) 해당 포트가 열려있음을, 그렇지 않으면(Closed) 닫혀 있음을 출력합니다.
 
 with 구문 사용
 with 구문을 사용하여 소켓 객체를 생성하면, 스캔 후 자동으로 소켓이 닫히므로 코드가 간결해집니다.
