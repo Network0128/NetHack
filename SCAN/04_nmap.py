@@ -14,7 +14,7 @@ pip show python-nmap
     scanner.all_hosts(): 스캔된 호스트를 순회.
     scanner[host]['tcp'][port]['state']: 각 포트의 상태 ("open", "closed" 등)를 가져옴.
     state.upper(): 상태를 대문자("OPEN", "CLOSED")로 변환해 출력.
-
+--------------------------------------------------------------------------
 import nmap
 
 # 사용자로부터 대상 IP와 포트 범위 입력 받기
