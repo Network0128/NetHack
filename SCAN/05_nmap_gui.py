@@ -53,3 +53,12 @@ for col in columns:
 output_text.pack(fill='both', expand=True)
 
 root.mainloop()
+
+----------------------------------------------------
+💻 실행 예시
+IP 주소	상태	열린 TCP 포트
+30.1.1.254	up	22 (ssh) - open, 80 (http) - open
+30.1.1.253	up	No TCP ports found.
+
+entry에 직접 IP 대역 입력 가능 (예: 192.168.1.0/24, 10.0.0.1-10 등)
+
