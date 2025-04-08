@@ -76,40 +76,28 @@ nm.all_hosts()를 사용해 스캔된 모든 호스트를 가져옵니다. 이�
 3. TCP 포트 확인:
 스캔된 호스트에 TCP 포트 정보가 있는지 확인한 후 처리합니다. TCP 포트 정보가 없으면 "No TCP ports found."를 출력합니다.
 
-import nmap  # nmap 라이브러리를 불러옴 (python-nmap 모듈 설치 필요)
-
-# PortScanner 객체 생성 (nmap 명령어를 파이썬에서 제어할 수 있도록 함)
-nm = nmap.PortScanner()
-
-# 사용자 입력으로 대상 IP 범위 또는 네트워크 대역 받기
-hosts = input("스캔할 IP 범위 또는 네트워크 주소 입력(예: 30.1.1.1-100 또는 30.1.1.0/24): ")
-
-print(f"\n스캔 중: {hosts}")
-print("스캔 시작")
-
-# 스캔 수행
-# -T4 : 빠른 속도 (Aggressive), -F : 빠른 스캔 (기본 포트만 스캔)
-nm.scan(hosts, arguments='-T4 -F')
-
-print("스캔 완료")
-
-# 스캔된 모든 호스트에 대해 반복 처리
+import nmap  
+nm = nmap.PortScanner()  
+hosts = input("스캔할 IP 주소 범위를 입력(30.1.1.1-100 또는 30.1.1.0/24): ")  
+nm.scan(hosts, arguments='-F -T4')  
 for host in nm.all_hosts():
-    print(f"\nHost: {host}")  # 호스트 IP 출력
-    print(f"Status: {nm[host].state()}")  # up/down 상태 출력
-
-    # TCP 포트 정보가 있는 경우
+    print(f"Host: {host}") 
+    print(f"Status: {nm[host].state()}") 
     if 'tcp' in nm[host]:
-        for port, details in nm[host]['tcp'].items():
-            print(f"TCP Port {port}: {details['state']} ({details['name']})")  # 포트번호, 상태, 서비스명
+        for port, details in nm[host]['tcp'].items(): 
+            state = details['state']  
+            service = details['name'] 
+            print(f"Port {port}: {state} ({service})") 
     else:
-        print("No TCP ports found.")  # TCP 포트가 없을 경우
+        print("No TCP Port")
 
 ----아래 코드는 사용 안 함 -- # UDP 포트 정보가 있는 경우 (실제 사용 시 옵션에 -sU 필요함, 그리고 결과까지 너무 오래 걸림) ----
     if 'udp' in nm[host]:
-        for port, details in nm[host]['udp'].items():
-            print(f"UDP Port {port}: {details['state']} ({details['name']})")
+        for port, details in nm[host]['udp'].items(): 
+            state = details['state']  
+            service = details['name'] 
+            print(f"Port {port}: {state} ({service})") 
     else:
-        print("No UDP ports found.")
+        print("No UDP Port")
 
 
